@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Ingredient extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
         'name'
     ];

@@ -17,24 +17,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $jsonRecettes =  Storage::disk('public')->get('recipes.json');
-        $recettes = json_decode($jsonRecettes)['recipes'];
+        $jsonRecettes = Storage::disk('public')->get('recipes.json');
+        $data = json_decode($jsonRecettes, true);
+        $recettes = $data['recipes'];
 
         foreach($recettes as $recette) {
-            $nouvelleRecette = Recette::insertGetId([
-                'name' => $recette->name,
-                'preparationTime' => $recette->preparationTime,
-                'cookingTime' => $recette->cookingTime,
-                'serves' => $recette->serves,
+
+            //dd($recette);
+            $nouvelleRecette = Recette::create([
+                'name' => $recette["name"],
+                'preparationTime' => $recette["preparationTime"],
+                'cookingTime' => $recette["cookingTime"],
+                'serves' => $recette["serves"],
             ]);
-
-            foreach ($recette->ingredients as $nomIngredient) {
-                $ingredient = Ingredient::firstOrCreate(['name' => $nomIngredient]);
-
-                DB::table('recettes_ingredients')->insert([
-                    'recettes_id' => $nouvelleRecette,
-                    'ingredients_id' => $ingredient->id
+            foreach ($recette["ingredients"] as $nomIngredient) {
+                $ingredient = Ingredient::firstOrCreate([
+                    'name' => $nomIngredient
                 ]);
+                $nouvelleRecette->ingredients()->attach($ingredient->id);
             }
         }
     }
