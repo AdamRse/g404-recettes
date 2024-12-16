@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('recettes', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->smallInteger("ingredients_id");
-            $table->smallInteger("preparationTime");
-            $table->smallInteger("cookingTime");
-            $table->smallInteger("serves");
+            $table->string("preparationTime");
+            $table->string("cookingTime");
+            $table->unsignedSmallInteger("serves");
         });
     }
 
