@@ -21,7 +21,7 @@ class Notation extends Model
 
     // Relation avec le modèle Recette
     public function recette(): BelongsTo
-{
-    return $this->belongsTo(Recette::class);
-}
+    {
+        return $this->belongsTo(Recette::class);
+    }
 }

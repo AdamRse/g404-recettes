@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notation;
 use App\Models\Recette;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 
 class RecettesController extends Controller
 {
@@ -18,6 +20,7 @@ class RecettesController extends Controller
             $data['error'] = 'Aucune recette trouvée';
         else
             $data = [
+                'id' => $recette->id,
                 'name' => $recette->name,
                 'preparationTime' => $recette->preparationTime,
                 'cookingTime' => $recette->cookingTime,
@@ -31,5 +34,20 @@ class RecettesController extends Controller
                 })->toArray()
             ];
         return view('accueil', $data);
+    }
+
+    public function register(Request $request){
+        try{
+            $validated = $request->validate([
+                'recette_id' => 'integer|exists:recettes,id',
+                'comment' => 'nullable|string',
+                'note' => 'integer|min:0|max:10'
+            ]);
+            Notation::create($validated);
+            return redirect('/')->with('RegisterSuccess', 'Appréciation ajoutée avec succès');
+        }
+        catch (ValidationException $e) {
+            return redirect('/')->withErrors($e->errors());
+        }
     }
 }

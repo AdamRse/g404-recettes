@@ -7,3 +7,4 @@ use Illuminate\Support\Facades\Route;
 //     //return view('welcome');
 // });
 Route::get('/', [RecettesController::class, 'index']);
+Route::post('/registerComment', [RecettesController::class, 'register']);
