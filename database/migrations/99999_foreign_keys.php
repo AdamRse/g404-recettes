@@ -15,6 +15,9 @@ return new class extends Migration
             $table->foreign('recette_id')->references('id')->on('recettes')->onDelete("cascade");
             $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete("cascade");
         });
+        Schema::table('notations', function (Blueprint $table) {
+            $table->foreign('recette_id')->references('id')->on('recettes')->onDelete("cascade");
+        });
 
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+
     }
 };
