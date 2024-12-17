@@ -50,4 +50,25 @@ class RecettesController extends Controller
             return redirect('/')->withErrors($e->errors());
         }
     }
+    public function list(){
+        $data=["recettes" => null];
+        $recettes = Recette::with(['ingredients', 'notations'])->get();
+        foreach ($recettes as $recette) {
+            $data["recettes"][] = [
+                'id' => $recette->id,
+                'name' => $recette->name,
+                'preparationTime' => $recette->preparationTime,
+                'cookingTime' => $recette->cookingTime,
+                'serves' => $recette->serves,
+                'ingredients' => $recette->ingredients->pluck('name')->toArray(),
+                'notations' => $recette->notations->map(function($notation) {
+                    return [
+                        'note' => $notation->note,
+                        'comment' => $notation->comment
+                    ];
+                })->toArray()
+            ];
+        }
+        return view('receipes', $data);
+    }
 }

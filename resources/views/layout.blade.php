@@ -6,7 +6,15 @@
 </head>
 <body>
     <nav>
-        Recettes 404 : Site de recettes pour tous
+        <div>
+            Recettes 404 : Site de recettes pour tous
+        </div>
+        <div>
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/receipes">Recettes</a></li>
+            </ul>
+        </div>
     </nav>
 
     <main>
