@@ -1,0 +1,362 @@
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation */
+.main-nav {
+    background-color: #ff6b6b;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Contenu principal */
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Footer */
+.main-footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+
+
+/* Media Queries pour la responsivité */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .nav-links ul {
+        gap: 1rem;
+    }
+}
+
+/* Page title */
+.page-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+/* Grid de recettes */
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* Carte de recette */
+.recipe-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+}
+
+/* En-tête de la recette */
+.recipe-header {
+    background: #ff6b6b;
+    color: white;
+    padding: 1rem;
+}
+
+.recipe-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Contenu de la recette */
+.recipe-content {
+    padding: 1.5rem;
+}
+
+/* Informations de la recette */
+.recipe-info {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.recipe-info p {
+    margin: 0.5rem 0;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #666;
+}
+
+/* Section ingrédients */
+.recipe-ingredients {
+    margin-bottom: 1.5rem;
+}
+
+.recipe-ingredients h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.recipe-ingredients ul {
+    list-style-position: inside;
+    padding-left: 1rem;
+}
+
+.recipe-ingredients li {
+    margin: 0.3rem 0;
+    color: #666;
+}
+
+/* Section notations */
+.recipe-ratings {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.rating {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.rating:last-child {
+    margin-bottom: 0;
+}
+
+.rating-comment {
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    color: #666;
+}
+
+.rating-score {
+    font-weight: 600;
+    color: #ff6b6b;
+    margin: 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .recipes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+}
+
+/* Page recette aléatoire */
+.random-recipe {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.recipe-header {
+    background: #ff6b6b;
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.recipe-header h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.8rem;
+}
+
+.prep-time {
+    margin: 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Section ingrédients */
+.ingredients-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.ingredients-section h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.ingredients-section ul {
+    list-style-position: inside;
+    padding-left: 1rem;
+}
+
+.ingredients-section li {
+    margin: 0.5rem 0;
+    color: #666;
+}
+
+/* Formulaire */
+.rating-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.range-group {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.submit-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background: #ff5252;
+}
+
+/* Messages d'erreur et de succès */
+.error-messages {
+    background: #ffe6e6;
+    border-left: 4px solid #ff3333;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 4px;
+}
+
+.error-messages p {
+    color: #cc0000;
+    margin: 0.3rem 0;
+}
+
+.success-message {
+    background: #e6ffe6;
+    border-left: 4px solid #33cc33;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 4px;
+    color: #008000;
+}
+
+/* Section des avis */
+.ratings-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.ratings-section h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .random-recipe {
+        padding: 1rem;
+    }
+
+    .recipe-header {
+        padding: 1.5rem;
+    }
+
+    .recipe-header h2 {
+        font-size: 1.5rem;
+    }
+}

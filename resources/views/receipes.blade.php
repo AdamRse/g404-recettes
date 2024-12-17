@@ -1,31 +1,35 @@
 @extends('layout')
 @section('title', 'Liste des recettes')
 @section('content')
-<h1>Liste des recettes</h1>
-<div>
+<h1 class="page-title">Liste des recettes</h1>
+<div class="recipes-grid">
     @foreach($recettes as $recette)
-    <article>
-        <header>
+    <article class="recipe-card">
+        <header class="recipe-header">
             <h2>{{ $recette['name'] }}</h2>
         </header>
-        <div>
-            <p>Temps de préparation : {{ $recette['preparationTime'] }}</p>
-            <p>Temps de cuisson : {{ $recette['cookingTime'] }}</p>
-            <p>Pour {{ $recette['serves'] }} personnes</p>
-            <h3>Ingrédients :</h3>
-            <ul>
-                @foreach($recette['ingredients'] as $ingredient)
-                <li>{{ $ingredient }}</li>
-                @endforeach
-            </ul>
+        <div class="recipe-content">
+            <div class="recipe-info">
+                <p><span class="info-label">Temps de préparation :</span> {{ $recette['preparationTime'] }}</p>
+                <p><span class="info-label">Temps de cuisson :</span> {{ $recette['cookingTime'] }}</p>
+                <p><span class="info-label">Pour</span> {{ $recette['serves'] }} personnes</p>
+            </div>
+            <div class="recipe-ingredients">
+                <h3>Ingrédients :</h3>
+                <ul>
+                    @foreach($recette['ingredients'] as $ingredient)
+                    <li>{{ $ingredient }}</li>
+                    @endforeach
+                </ul>
+            </div>
             @if(!empty($recette['notations']))
-            <div>
+            <div class="recipe-ratings">
                 @foreach($recette['notations'] as $notation)
-                <div>
+                <div class="rating">
                     @if(!empty($notation['comment']))
-                    <p>{{ $notation['comment'] }}</p>
+                    <p class="rating-comment">{{ $notation['comment'] }}</p>
                     @endif
-                    <p>{{ $notation['note'] }}/10</p>
+                    <p class="rating-score">{{ $notation['note'] }}/10</p>
                 </div>
                 @endforeach
             </div>
