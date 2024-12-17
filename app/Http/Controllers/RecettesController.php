@@ -10,6 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 class RecettesController extends Controller
 {
+    //page d'accueil : affiche une recette aléatoire avec ses ingrédients et commentaires
     public function index(){
         $data = [];
         $recette = Recette::with(['ingredients', 'notations'])
@@ -18,7 +19,7 @@ class RecettesController extends Controller
 
         if(!$recette)
             $data['error'] = 'Aucune recette trouvée';
-        else
+        else{
             $data = [
                 'id' => $recette->id,
                 'name' => $recette->name,
@@ -33,9 +34,13 @@ class RecettesController extends Controller
                     ];
                 })->toArray()
             ];
-        return view('accueil', $data);
+            $data['title']="Recette aléatoire";
+        }
+
+        return view('receipe', $data);
     }
 
+    //Ajoute une notation, accompagnée d'un commentaire optionnel
     public function register(Request $request){
         try{
             $validated = $request->validate([
@@ -50,6 +55,8 @@ class RecettesController extends Controller
             return redirect('/')->withErrors($e->errors());
         }
     }
+
+    //Donne la liste de toutes les recettes avec leurs ingrédients et commentaires
     public function list(){
         $data=["recettes" => null];
         $recettes = Recette::with(['ingredients', 'notations'])->get();
@@ -70,5 +77,31 @@ class RecettesController extends Controller
             ];
         }
         return view('receipes', $data);
+    }
+
+    //Affiche unerecette choisie avec ses ingrédients et commentaires glaçants
+    public function show($id){
+        $data=["recette" => null];
+        $recette = Recette::with(['ingredients', 'notations'])->find($id);
+        if($recette){
+            $data = [
+                'id' => $recette->id,
+                'name' => $recette->name,
+                'preparationTime' => $recette->preparationTime,
+                'cookingTime' => $recette->cookingTime,
+                'serves' => $recette->serves,
+                'ingredients' => $recette->ingredients->pluck('name')->toArray(),
+                'notations' => $recette->notations->map(function($notation) {
+                    return [
+                        'note' => $notation->note,
+                        'comment' => $notation->comment
+                    ];
+                })->toArray()
+            ];
+            $data['title']="Recette ".$recette->name;
+            return view('receipe', $data);
+        }
+        else
+            return view('error404', ["title" => "Recette introuvable", "message" => "Impossible de trouver la recette"]);
     }
 }

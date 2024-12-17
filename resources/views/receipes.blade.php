@@ -4,6 +4,7 @@
 <h1 class="page-title">Liste des recettes</h1>
 <div class="recipes-grid">
     @foreach($recettes as $recette)
+    <a href="/receipe/{{ $recette['id'] }}">
     <article class="recipe-card">
         <header class="recipe-header">
             <h2>{{ $recette['name'] }}</h2>
@@ -36,6 +37,7 @@
             @endif
         </div>
     </article>
+    </a>
     @endforeach
 </div>
 @endsection

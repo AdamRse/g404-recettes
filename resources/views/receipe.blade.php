@@ -1,8 +1,8 @@
 @extends('layout')
-@section('title', 'Recette 404 aléatoire')
+@section('title', $title)
 @section('content')
 <div class="random-recipe">
-    <h1 class="page-title">Recette aléatoire</h1>
+    <h1 class="page-title">{{$title}}</h1>
 
     <div class="recipe-header">
         <h2>{{ $name }} pour {{ $serves }} personne{{ $serves > 1 ? 's' : '' }}</h2>
