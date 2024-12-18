@@ -7,24 +7,13 @@ use App\Repositories\Interfaces\NotationRepositoryInterface;
 
 class NotationRepository implements NotationRepositoryInterface
 {
-    public function create(array $data)
-    {
+    //Ajouter une notation dans la BDD
+    public function create(array $data):bool{
         return Notation::create($data);
     }
 
-    public function hasUserAlreadyRated($recetteId)
-    {
-        // Dans un vrai cas, vous vérifieriez avec l'ID de l'utilisateur
-        // Ici c'est simplifié car anonyme
-        return false;
-    }
-
-    public function updateAverageRating($recetteId)
-    {
-        // Calculer et mettre à jour la note moyenne
-        $average = Notation::where('recette_id', $recetteId)
-            ->avg('note');
-
-        return $average;
+    //A venir : Vérifier si l'utilisateur a déjà noté
+    public function hasUserAlreadyRated(int $recetteId):bool{
+        return false;//Pas encore implémenté, pas de user en bdd
     }
 }

@@ -23,9 +23,6 @@ class NotationService implements NotationServiceInterface
         // Création de la notation via le repository
         $notation = $this->notationRepository->create($data);
 
-        // Mise à jour de la note moyenne
-        $this->notationRepository->updateAverageRating($data['recette_id']);
-
         return $notation;
     }
 }
