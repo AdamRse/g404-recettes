@@ -8,21 +8,15 @@ class NotationService implements NotationServiceInterface
 {
     private $notationRepository;
 
-    public function __construct(NotationRepositoryInterface $notationRepository)
-    {
+    public function __construct(NotationRepositoryInterface $notationRepository){
         $this->notationRepository = $notationRepository;
     }
 
-    public function addNotation(array $data)
-    {
-        // Logique métier ici
+    //Ajout d'une notation en base de données
+    public function addNotation(array $data):void{
         if ($this->notationRepository->hasUserAlreadyRated($data['recette_id'])) {
             throw new \Exception("Cette recette a déjà été notée");
         }
-
-        // Création de la notation via le repository
-        $notation = $this->notationRepository->create($data);
-
-        return $notation;
+        $this->notationRepository->create($data);
     }
 }

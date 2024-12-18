@@ -9,7 +9,12 @@ class NotationRepository implements NotationRepositoryInterface
 {
     //Ajouter une notation dans la BDD
     public function create(array $data):bool{
-        return Notation::create($data);
+        try {
+            Notation::create($data);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     //A venir : Vérifier si l'utilisateur a déjà noté
