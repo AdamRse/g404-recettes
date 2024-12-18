@@ -14,10 +14,8 @@ class RecettesController extends Controller
     private $recetteRepository;
     private $notationService;
 
-    public function __construct(
-        RecetteRepositoryInterface $recetteRepository,
-        NotationServiceInterface $notationService
-    ){
+    //Composition : instanciation des classes par leur interface via le provider
+    public function __construct(RecetteRepositoryInterface $recetteRepository, NotationServiceInterface $notationService){
         $this->recetteRepository = $recetteRepository;
         $this->notationService = $notationService;
     }
@@ -26,12 +24,12 @@ class RecettesController extends Controller
     public function index()
     {
         $data = $this->recetteRepository->getRandomRecette();
-
-        if (!isset($data['error'])) {
+        if($data){
             $data['title'] = "Recette aléatoire";
+            return view('recipe', $data);
         }
-
-        return view('receipe', $data);
+        else
+            return view('error', ["message" => "Impossible de trouver une recette"]);
     }
 
     //Ajoute une notation, accompagnée d'un commentaire optionnel
@@ -58,7 +56,7 @@ class RecettesController extends Controller
     public function list()
     {
         $recettes = $this->recetteRepository->getAllRecettes();
-        return view('receipes', ['recettes' => $recettes]);
+        return view('recipes', ['recettes' => $recettes]);
     }
 
     //Affiche unerecette choisie avec ses ingrédients et commentaires glaçants
@@ -68,7 +66,7 @@ class RecettesController extends Controller
 
         if ($data) {
             $data['title'] = "Recette " . $data['name'];
-            return view('receipe', $data);
+            return view('recipe', $data);
         }
 
         return view('error404', [

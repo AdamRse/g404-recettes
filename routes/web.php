@@ -7,6 +7,6 @@ use Illuminate\Support\Facades\Route;
 //     //return view('welcome');
 // });
 Route::get('/', [RecettesController::class, 'index']);
-Route::get('/receipe/{id}', [RecettesController::class, 'show']);
-Route::get('/receipes', [RecettesController::class, 'list']);
+Route::get('/recipe/{id}', [RecettesController::class, 'show']);
+Route::get('/recipes', [RecettesController::class, 'list']);
 Route::post('/registerComment', [RecettesController::class, 'register']);

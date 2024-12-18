@@ -15,7 +15,7 @@
         <div class="nav-links">
             <ul>
                 <li><a href="/">Accueil</a></li>
-                <li><a href="/receipes">Recettes</a></li>
+                <li><a href="/recipes">Recettes</a></li>
             </ul>
         </div>
     </nav>

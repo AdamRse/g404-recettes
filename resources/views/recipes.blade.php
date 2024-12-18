@@ -4,7 +4,7 @@
 <h1 class="page-title">Liste des recettes</h1>
 <div class="recipes-grid">
     @foreach($recettes as $recette)
-    <a href="/receipe/{{ $recette['id'] }}">
+    <a href="/recipe/{{ $recette['id'] }}">
     <article class="recipe-card">
         <header class="recipe-header">
             <h2>{{ $recette['name'] }}</h2>
