@@ -28,13 +28,11 @@ class RecettesController extends Controller
             $data['title'] = "Recette aléatoire";
             return view('recipe', $data);
         }
-        else
-            return view('error', ["message" => "Impossible de trouver une recette"]);
+        return view('error404', ["message" => "Impossible de trouver une recette"]);
     }
 
     //Ajoute une notation, accompagnée d'un commentaire optionnel
-    public function register(Request $request)
-    {
+    public function register(Request $request){
         try {
             $validated = $request->validate([
                 'recette_id' => 'integer|exists:recettes,id',
@@ -53,17 +51,17 @@ class RecettesController extends Controller
     }
 
     //Donne la liste de toutes les recettes avec leurs ingrédients et commentaires
-    public function list()
-    {
+    public function list(){
         $recettes = $this->recetteRepository->getAllRecettes();
-        return view('recipes', ['recettes' => $recettes]);
+        if($recettes)
+            return view('recipes', ['recettes' => $recettes]);
+
+        return view('error404', ["message" => "Impossible de faire la liste des recettes"]);
     }
 
     //Affiche unerecette choisie avec ses ingrédients et commentaires glaçants
-    public function show($id)
-    {
+    public function show($id){
         $data = $this->recetteRepository->getRecetteById($id);
-
         if ($data) {
             $data['title'] = "Recette " . $data['name'];
             return view('recipe', $data);
