@@ -4,12 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Notation;
 use App\Models\Recette;
+use App\Repositories\RecetteRepositoryInterface;
+use App\Services\Interfaces\NotationServiceInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class RecettesController extends Controller
 {
+    private $recetteRepository;
+    private $notationService;
+
+    public function __construct(
+        RecetteRepositoryInterface $recetteRepository,
+        NotationServiceInterface $notationService
+    ) {
+        $this->recetteRepository = $recetteRepository;
+        $this->notationService = $notationService;
+    }
+
     //page d'accueil : affiche une recette aléatoire avec ses ingrédients et commentaires
     public function index(){
         $data = [];
