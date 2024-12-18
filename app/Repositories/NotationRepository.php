@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Notation;
+use App\Repositories\Interfaces\NotationRepositoryInterface;
 
 class NotationRepository implements NotationRepositoryInterface
 {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Notation;
 use App\Models\Recette;
-use App\Repositories\RecetteRepositoryInterface;
+use App\Repositories\Interfaces\RecetteRepositoryInterface;
 use App\Services\Interfaces\NotationServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;

@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
+use App\Repositories\Interfaces\RecetteRepositoryInterface;
 use App\Repositories\NotationRepository;
-use App\Repositories\NotationRepositoryInterface;
+use App\Repositories\Interfaces\NotationRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\RecetteRepository;
-use App\Repositories\RecetteRepositoryInterface;
 use App\Services\Interfaces\NotationServiceInterface;
 use App\Services\NotationService;
 

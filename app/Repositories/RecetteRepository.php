@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Recette;
+use App\Repositories\Interfaces\RecetteRepositoryInterface;
 
 class RecetteRepository implements RecetteRepositoryInterface
 {

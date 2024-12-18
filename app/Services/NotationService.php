@@ -2,7 +2,7 @@
 namespace App\Services;
 
 use App\Services\Interfaces\NotationServiceInterface;
-use App\Repositories\NotationRepositoryInterface;
+use App\Repositories\Interfaces\NotationRepositoryInterface;
 
 class NotationService implements NotationServiceInterface
 {
